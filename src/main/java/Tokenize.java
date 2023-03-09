@@ -78,7 +78,7 @@ public class Tokenize {
         for (File file: listOfFiles) {
             if (file.isFile()) {
                 filesProcessed++;
-                long pageStartTime = System.nanoTime();
+                long fileStartTime = System.nanoTime();
                 String fileName = file.getName().split("[.]")[0];
 
                 File input = new File(FILE_PATH + "files/" + file.getName());
@@ -95,8 +95,8 @@ public class Tokenize {
                 }
                 dumpTokensToFile(words, tokensOutputPath + fileName + ".txt");
 
-                long pageEndTime = System.nanoTime() - pageStartTime;
-                perPageProcessingTime[Integer.parseInt(fileName) - 1] = pageEndTime;
+                long fileEndTime = System.nanoTime() - fileStartTime;
+                perPageProcessingTime[Integer.parseInt(fileName) - 1] = fileEndTime;
 
                 if (filesProcessed % 50 == 0) {
                     processingTimeHashMap.put(filesProcessed, System.nanoTime() - programStartTime);
